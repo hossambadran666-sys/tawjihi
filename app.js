@@ -1,27 +1,11 @@
-var list = document.getElementById("list");
-var sold = JSON.parse(localStorage.getItem("sold") || "{}");
-
-function save() {
-  localStorage.setItem("sold", JSON.stringify(sold));
-}
-
-function render() {
-  list.innerHTML = "";
-  ITEMS.forEach(function (item, i) {
-    var s = sold[i] || 0;
-    var div = document.createElement("div");
-    div.innerHTML = "<b>" + item.name + "</b><br>بعت " + s +
-      " من " + item.q + " · باقي " + Math.max(0, item.q - s) + "<br>";
-    var btn = document.createElement("button");
-    btn.textContent = "+1";
-    btn.onclick = function () {
-      sold[i] = s + 1;
-      save();
-      render();
-    };
-    div.appendChild(btn);
-    list.appendChild(div);
-  });
-}
-
-render();
+<style>
+  body { font-family: Tahoma, sans-serif; background: #eef0ee; margin: 0; padding: 14px; }
+  h1 { font-size: 20px; color: #0c4a50; }
+  .card { background: #fff; border-radius: 12px; padding: 12px; margin-bottom: 10px; border-right: 5px solid #0c4a50; }
+  .card.done { background: #d9ece9; }
+  .name { font-weight: bold; font-size: 16px; }
+  .bonus { color: #9a6b12; margin: 6px 0; }
+  .info { color: #555; margin-bottom: 8px; }
+  button { font-size: 16px; padding: 10px 18px; border-radius: 10px; border: 1px solid #ccc; background: #fff; margin-left: 8px; }
+  button.plus { background: #0c4a50; color: #fff; border-color: #0c4a50; }
+</style>
